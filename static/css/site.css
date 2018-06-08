@@ -8,7 +8,6 @@ body, html {
 .navigation{
   position:absolute;
   bottom: 0px;
-   
 }
 
 .landing-page{
@@ -45,7 +44,7 @@ body, html {
   }
 }
 
-.about{
+.about{  
   background-image: url(../img/gun.jpg);
   height: 100vh;
 
@@ -55,3 +54,4 @@ body, html {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
