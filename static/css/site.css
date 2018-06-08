@@ -1,14 +1,36 @@
 body{
-  background-color: rgba(0, 0, 0, 0.911);  
+  background-color: #CB3E3E; 
 }
 
-.navbar{
+.navbar {
   background-color: transparent;
-  border-bottom: 0.5px solid red;
+  border-bottom: 0.5px solid black;
 }
 
 .navbar a{
-  color: black;
-  font-size: 2.5em;
+  color: white;
+  font-size: 2.5em;  
+}
+
+.row{
+  height: 100vh;
+}
+
+
+
+.col-2{
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-right-color: black;
+}
+
+
+.container-fluid{
+  margin: 0.3em 0em;
+}
+
+.container-fluid a{
+  color: white;
+  text-decoration: none;
   
 }
