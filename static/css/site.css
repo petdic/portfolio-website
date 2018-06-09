@@ -1,14 +1,15 @@
 body, html {
   height:100%;
   background-color:black;
-  font-family: 'Montserrat', sans-serif;
-  color:white;
+  /*font-family: 'Montserrat', sans-serif;*/
+  font-family: 'Poiret One', sans-serif;
+  color:white;  
 }
 
-.navigation{
-  position:absolute;
-  bottom: 0px;
+p{
+  font-size: 1.5em;
 }
+
 
 .landing-page{
   /* image used */  
@@ -29,9 +30,6 @@ body, html {
   animation-timing-function: ease-out;
   animation-fill-mode: forwards; /* style is kept from last keyframe */
 
-  padding-right:0;
-  padding-left:0;
-
   box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.43);
 } 
 
@@ -42,6 +40,20 @@ body, html {
   100%{
     opacity: 1;
   }
+}
+
+.section-1{
+  height:30%;
+}
+
+.section-1 h1{
+  position: absolute;
+  bottom:0px;
+}
+
+.border-stairs{
+  border-bottom: solid 1px white;
+  border-left: solid 1px white;
 }
 
 .about{  
