@@ -14,6 +14,32 @@ p{
   font-size: 1.5em;
 }
 
+nav{  
+  position: fixed;
+  top:0;
+  
+  /* image used */  
+  background-image:url(../img/dice.jpg);
+
+  /* full width */
+  width: 100%;  
+  
+  /* create parallax scrolling effect*/
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;   
+
+}
+
+#navbar a{
+  color:white;
+  text-decoration: none;
+  font-size: 40px;
+  padding-left:10%;
+}
+
+
 
 .landing-page{
   /* image used */  
@@ -36,6 +62,7 @@ p{
   animation-play-state: paused;
 
   box-shadow: 0px 6px 5px 0px rgba(0,0,0,0.43);
+  padding: 0px 0px;
 } 
 
 @keyframes reveal{
@@ -47,18 +74,19 @@ p{
   }
 }
 
-.section-1{
-  height:30%;
+/* .section-1{
+  height:20%;
 }
 
 .section-1 h1{
+  
+  
   position: absolute;
-  bottom:0px;
-}
+  bottom:0px;  
+} */
 
-.border-stairs{
-  border-bottom: solid 1px white;
-  border-left: solid 1px white;
+.section-2{ 
+  width:100%;  
 }
 
 .about{  
