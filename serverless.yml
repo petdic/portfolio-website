@@ -2,6 +2,16 @@ service: peter-portfolio
 
 frameworkVersion: ">=1.27.2 <2.0.0"
 
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  rootDomain: peterdicey.com
+  devDomains:
+    - test.peterdicey.com
+  prodDomains:
+    - www.peterdicey.com
+    - peterdicey.com
+  
+
 provider:
   name: aws
   region: us-east-1
@@ -10,11 +20,8 @@ provider:
 functions:
 
 resources:
-  Outputs:
-    WebSiteUrl:
-      Value: {"Fn::GetAtt": [WebSite, WebsiteURL]}
-    WebSiteBucket:
-      Value: {Ref: WebSite}
+  Mappings: ${file(resources/mappings.yml)}
+  Outputs: ${file(resources/outputs.yml)}  
   Resources:
     WebSite:
       Type: "AWS::S3::Bucket"
@@ -22,3 +29,34 @@ resources:
         WebsiteConfiguration:
           ErrorDocument: index.html
           IndexDocument: index.html
+    DnsRecords: ${file(resources/${self:custom.stage}-dns.yml)}
+    SSLCert: ${file(resources/${self:custom.stage}-ssl.yml)}
+    CDN:
+      Type: "AWS::CloudFront::Distribution"
+      Properties:
+        DistributionConfig:
+          ViewerCertificate:
+            AcmCertificateArn: {Ref: SSLCert}
+            SslSupportMethod: sni-only
+          Enabled: true
+          HttpVersion: http2
+          Aliases: ${self:custom.${self:custom.stage}Domains}
+          DefaultRootObject: index.html
+          Origins:
+            - DomainName: {"Fn::Join": ["", [{Ref: WebSite}, ".", {"Fn::FindInMap": [RegionMap, {Ref: "AWS::Region"}, websiteendpoint]}]]}
+              Id: S3Origin
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: http-only
+          DefaultCacheBehavior:
+            ViewerProtocolPolicy: allow-all
+            TargetOriginId: S3Origin
+            AllowedMethods:
+              - GET
+              - HEAD
+            Compress: true
+            DefaultTTL: 30
+            MinTTL: 10
+            ForwardedValues:
+              QueryString: true
