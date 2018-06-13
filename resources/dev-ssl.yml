@@ -1,3 +1,5 @@
 Type: "AWS::CertificateManager::Certificate"
 Properties:
   DomainName: "test.${self:custom.rootDomain}"
+  SubjectAlternativeNames:
+    - "www.test.${self:custom.rootDomain}"

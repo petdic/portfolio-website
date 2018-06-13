@@ -6,6 +6,7 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   rootDomain: peterdicey.com
   devDomains:
+    - www.test.peterdicey.com
     - test.peterdicey.com
   prodDomains:
     - www.peterdicey.com
